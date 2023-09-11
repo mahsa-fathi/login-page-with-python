@@ -1,0 +1,39 @@
+{% extends "pages/base.html" %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block page_content %}
+  <!-- partial:index.partial.html -->
+  <div class="login-form">
+    <form id="registrationForm">
+      {% csrf_token %}
+      <h1>Sign Up</h1>
+      <div class="content">
+          <div class="input-field">
+            <input type="email" name="email" placeholder="Email" autocomplete="nope">
+            <div id="emailError" style="color: red; text-align: left;"></div>
+          </div>
+          <div class="input-field">
+            <input type="password" name="password" placeholder="Password" autocomplete="new-password">
+            <div id="passwordError" style="color: red; text-align: left;"></div>
+          </div>
+          <div class="input-field">
+            <input type="password" name="password2" placeholder="Confirm Password" autocomplete="new-password">
+          </div>
+          <div class="input-field">
+            <input type="text" name="first_name" placeholder="First Name" autocomplete="nope">
+          </div>
+          <div class="input-field">
+            <input type="text" name="last_name" placeholder="Last Name" autocomplete="nope">
+          </div>
+          <a href="{% url 'home' %}" class="link">Already have an account?</a>
+      </div>
+      <div class="action">
+        <button type="button" onclick="postData()">Sign Up</button>
+      </div>
+    </form>
+    <link rel="script", type="text/plain", href="{% static 'pages/register.js' %}">
+  </div>
+{% endblock page_content %}

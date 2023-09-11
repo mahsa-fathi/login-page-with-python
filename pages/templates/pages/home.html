@@ -7,7 +7,7 @@ Home
 {% block page_content %}
   <!-- partial:index.partial.html -->
   <div class="login-form">
-    <form>
+    <form method="POST">
       <h1>Login</h1>
       <div class="content">
         <div class="input-field">
@@ -19,9 +19,31 @@ Home
         <a href="#" class="link">Forgot Your Password?</a>
       </div>
       <div class="action">
-        <button>Register</button>
+        <button><a href="{% url 'register' %}">Register</a></button>
         <button>Sign in</button>
       </div>
     </form>
   </div>
+  <script>
+    // Function to parse and format URL query parameters
+    function formatQueryParameters() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        let formattedText = "";
+
+        // Iterate through the query parameters
+        for (const [key, value] of urlParams.entries()) {
+          if (key === 'success') {
+            formattedText += `${value}\n`
+          }
+        }
+
+        return formattedText;
+    }
+
+    // Get the formatted query parameters and display them in the div
+    const queryParametersDiv = document.getElementById('successMessage');
+    queryParametersDiv.innerText = formatQueryParameters();
+  </script>
 {% endblock page_content %}

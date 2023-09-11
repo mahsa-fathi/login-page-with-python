@@ -6,9 +6,17 @@
   <title>{% block title %}{% endblock title %}</title>
   <link rel='stylesheet' type="text/css" href="{% static 'pages/style.css' %}">
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:400,700'>
-
 </head>
 <body>
+<div id="errorMessage" class="message-bar red-back"></div>
+<div id="successMessage" class="message-bar green-back"></div>
+{% if messages %}
+  {% for message in messages %}
+    <div class="message-bar">
+      <p> {{ message }} </p>
+    </div>
+  {% endfor %}
+{% endif %}
 {% block page_content %}{% endblock page_content %}
 <!-- partial -->
   <link rel="script", type="text/plain", href="{% static 'pages/script.js' %}">
