@@ -1,28 +1,37 @@
 {% extends "pages/base.html" %}
+{% load static %}
 
 {% block title %}
 Home
 {% endblock title %}
 
+{% block header %}
+  <script type="text/javascript" src="{% static 'pages/login.js' %}"></script>
+{% endblock header %}
+
 {% block page_content %}
   <!-- partial:index.partial.html -->
   <div class="login-form">
-    <form method="POST">
+    <form id="loginForm">
+      {% csrf_token %}
       <h1>Login</h1>
       <div class="content">
         <div class="input-field">
-          <input type="email" placeholder="Email" autocomplete="nope">
+          <input type="email" name="username" placeholder="Email" autocomplete="nope">
         </div>
         <div class="input-field">
-          <input type="password" placeholder="Password" autocomplete="new-password">
+          <input type="password" name="password" placeholder="Password" autocomplete="new-password">
         </div>
         <a href="#" class="link">Forgot Your Password?</a>
       </div>
       <div class="action">
         <button><a href="{% url 'register' %}">Register</a></button>
-        <button>Sign in</button>
+        <button type="button" onclick="logIn()">Sign in</button>
       </div>
     </form>
+
+
+
   </div>
   <script>
     // Function to parse and format URL query parameters
@@ -44,6 +53,6 @@ Home
 
     // Get the formatted query parameters and display them in the div
     const queryParametersDiv = document.getElementById('successMessage');
-    queryParametersDiv.innerText = formatQueryParameters();
+    queryParametersDiv.innerHTML = formatQueryParameters();
   </script>
 {% endblock page_content %}

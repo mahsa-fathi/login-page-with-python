@@ -1,29 +1,15 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .forms import UserSignUpForm
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
     return render(request, 'pages/home.html', {})
 
 
+@login_required(redirect_field_name='home')
 def account(request):
     return render(request, 'pages/account.html', {})
 
 
 def signup(request):
-    if request.method == 'POST':
-        form = UserSignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, f'Account successfully created! You can now login.')
-            return redirect('home')
-        else:
-            message = ""
-            for msg in form.error_messages.values():
-                message += msg
-            messages.error(request, message)
-            return redirect('register')
-    else:
-        form = UserSignUpForm()
-    return render(request, 'pages/signup.html', {'form': form})
+    return render(request, 'pages/signup.html', {})

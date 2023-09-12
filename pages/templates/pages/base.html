@@ -6,6 +6,8 @@
   <title>{% block title %}{% endblock title %}</title>
   <link rel='stylesheet' type="text/css" href="{% static 'pages/style.css' %}">
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Rubik:400,700'>
+  <script type="text/javascript" src="{% static 'pages/script.js' %}"></script>
+  {% block header %}{% endblock header %}
 </head>
 <body>
 <div id="errorMessage" class="message-bar red-back"></div>
@@ -19,7 +21,6 @@
 {% endif %}
 {% block page_content %}{% endblock page_content %}
 <!-- partial -->
-  <link rel="script", type="text/plain", href="{% static 'pages/script.js' %}">
 
 </body>
 </html>

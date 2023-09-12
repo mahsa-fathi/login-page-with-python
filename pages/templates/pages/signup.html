@@ -1,10 +1,16 @@
 {% extends "pages/base.html" %}
+{% load static %}
 
 {% block title %}
-Home
+Sign Up
 {% endblock title %}
 
+{% block header %}
+  <script type="text/javascript" src="{% static 'pages/register.js' %}"></script>
+{% endblock header %}
+
 {% block page_content %}
+
   <!-- partial:index.partial.html -->
   <div class="login-form">
     <form id="registrationForm">
@@ -21,6 +27,7 @@ Home
           </div>
           <div class="input-field">
             <input type="password" name="password2" placeholder="Confirm Password" autocomplete="new-password">
+            <div id="password2Error" style="color: red; text-align: left;"></div>
           </div>
           <div class="input-field">
             <input type="text" name="first_name" placeholder="First Name" autocomplete="nope">
@@ -34,6 +41,5 @@ Home
         <button type="button" onclick="postData()">Sign Up</button>
       </div>
     </form>
-    <link rel="script", type="text/plain", href="{% static 'pages/register.js' %}">
   </div>
 {% endblock page_content %}

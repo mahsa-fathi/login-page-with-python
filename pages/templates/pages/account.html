@@ -1,15 +1,74 @@
 {% extends "pages/base.html" %}
 
 {% block title %}
-Welcome!
+Account
 {% endblock title %}
 
 {% block page_content %}
 
     <div class="login-form">
         <h1>
-            Welcome Mahsa!
+            Welcome <span id="firstName"></span>!
         </h1>
+        <br>
+        <br>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+        <p><strong>Last Name:</strong> <span id="lastName"></span></p>
+        <div class="action">
+            <button type="button" onclick="logout()">Log Out</button>
+        </div>
     </div>
+
+    <script>
+        // Function to fetch user details from the API and populate the page
+        async function fetchUserDetails() {
+            try {
+                const apiUrl = 'http://localhost:8000/api/details/';
+                const authToken = localStorage.getItem('authToken'); // Retrieve the token from localStorage
+
+                if (authToken) {
+                    const headers = {
+                        'Authorization': `TOKEN ${authToken}`
+                    };
+                    const response = await fetch(apiUrl, { headers });
+
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch user details');
+                    }
+
+                    const userData = await response.json();
+
+                    // Populate the page with user data
+                    document.getElementById('email').textContent = userData.email;
+                    if (userData.first_name) {
+                        document.getElementById('firstName').textContent = userData.first_name;
+                    }
+                    else {
+                        document.getElementById('firstName').textContent = 'User'
+                    }
+                    document.getElementById('lastName').textContent = userData.last_name;
+                }
+
+                else {
+                    window.location.href = `http://localhost:8000/`
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        // Call the function to fetch and display user details
+        fetchUserDetails();
+    </script>
+
+    <script>
+        function logout() {
+            localStorage.removeItem('authToken');
+
+            // Redirect the user to the login page or any other appropriate page
+            window.location.href = `http://localhost:8000/?success=${encodeURIComponent('You are logged out.')}`;
+        }
+    </script>
 
 {% endblock page_content %}

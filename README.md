@@ -7,10 +7,10 @@
 5. django migrate to database
 6. django-debug-tool -> add to django installed apps
 7. adding template pages
-8. pip install django-crispy-form -> add to installed django apps
-9. pip install crispy-bootstrap4
-10. model user
-11. pip install djangorestframework -> rest_framework to installed apps
+8. model user
+9. pip install djangorestframework -> rest_framework to installed apps
+10. 'rest_framework.authtoken' -> installed app
+11. migrate authtoken table
 
 
 

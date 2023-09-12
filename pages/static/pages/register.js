@@ -14,7 +14,7 @@ function getCSRFToken() {
 
 function showError(message, id='errorMessage') {
     const errorMessageDiv = document.getElementById(id);
-    errorMessageDiv.textContent = message;
+    errorMessageDiv.innerHTML = message;
 }
 
 function postData() {
@@ -46,13 +46,19 @@ function postData() {
                         if (response.status === 400) {
                             let passError = "";
                             if (errorData.hasOwnProperty('password')) {
-                                passError += errorData.password.join('<br>');
+                                passError += errorData.password.join(`<br>`);
                             }
                             showError(passError, 'passwordError')
 
+                            let pass2Error = "";
+                            if (errorData.hasOwnProperty('password2')) {
+                                pass2Error += errorData.password2.join(`<br>`);
+                            }
+                            showError(pass2Error, 'password2Error')
+
                             let emailError = "";
                             if (errorData.hasOwnProperty('email')) {
-                                emailError += errorData.email.join('<br>');
+                                emailError += errorData.email.join(`<br>`);
                             }
                             showError(emailError, 'emailError');
                         } else if (response.status === 401) {
@@ -60,12 +66,11 @@ function postData() {
                         } else {
                             showError('An error occurred with status code: ' + response.status);
                         }
+                        // Do not proceed to the success block
+                        throw new Error('Error in response');
                     });
                 }
-                else {
-                    showError('Non-JSON response with status code: ' + response.status);
-                }
-                // Do not proceed to the success block
+                showError('Non-JSON response with status code: ' + response.status);
                 throw new Error('Error in response');
             }
             return response.json();
