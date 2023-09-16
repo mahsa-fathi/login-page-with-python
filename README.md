@@ -1,8 +1,8 @@
 # login-page-with-python
 
-[![Python 3.9](https://img.shields.io/badge/Python-3.9-green.svg)](https://shields.io/)
-[![MySQL](https://img.shields.io/badge/MySQL-8.0-6082B6)](https://shields.io/)
-[![Django](https://img.shields.io/badge/Django-4.2-355E3B)](https://shields.io/)
+[![Python 3.9](https://img.shields.io/badge/Python-3.9-green.svg)](https://www.python.org/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-6082B6)](https://www.mysql.com/)
+[![Django](https://img.shields.io/badge/Django-4.2-355E3B)](https://www.djangoproject.com/)
 
 This is a practice project to learn to work with Django and authentication in Django. This project contains a login page, a register page, and a simple profile page with account information.
 
