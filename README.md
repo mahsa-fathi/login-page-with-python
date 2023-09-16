@@ -71,7 +71,9 @@ urlpatterns = [
 ]
 ```
 Finally, pages/views.py renders the right html file from templates to show the user login, register and account pages.
-APIs are called using javascript in our html files.
+APIs are called using javascript in our html files. 
+Besides, account page is inaccessible for users that are not logged in and it redirects them to login page. This is done
+using javascript.
 
 ## APIs
 
